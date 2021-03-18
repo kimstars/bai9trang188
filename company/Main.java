@@ -1,9 +1,8 @@
 package com.company;
 
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Arrays;
 
 
 public class Main {
@@ -20,7 +19,7 @@ public class Main {
         return true;
     }
 
-    public static void PrintArr(int[][] arr, int n, int m) {
+    public static void PrintArr2D(int[][] arr, int n, int m) {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 System.out.print(arr[i][j] + "  ");
@@ -28,17 +27,24 @@ public class Main {
             System.out.println();
         }
     }
+    public static void PrintArr1D(int[] arr, int n) {
+        for (int i = 0; i < n; i++) {
+                System.out.print(arr[i] + "  ");
+        }
+        System.out.println();
+        
+    }
 
-    public static void sortA(int[][] arr, int n, int m) {
-        for (int k = 0; k < m; k++) {
-            for (int i = 0; i < m; i++) {
-                for (int j = n - 1; j > i; j--) {
-                    if (arr[j][k] < arr[j - 1][k]) {
-                        int t = arr[j][k];
-                        arr[j][k] = arr[j - 1][k];
-                        arr[j - 1][k] = t;
-                    }
-                }
+    public static void sortA(int[][] arr, int n, int m) { // cách của tó thẻo :3 
+        for(int j = 0 ; j < m; j++){
+            int[] subArr = new int[n];
+            for(int i = 0; i < n; i++){
+                subArr[i] = arr[i][j];
+            }
+            Arrays.sort(subArr);
+            // PrintArr1D(subArr, n);
+            for(int i = 0; i < n; i++){
+                arr[i][j]  = subArr[i];
             }
         }
     }
@@ -58,7 +64,7 @@ public class Main {
             }
         }
 
-        PrintArr(arr, n, m);
+        PrintArr2D(arr, n, m);
 
         System.out.println("Giá trị max là: " + arr[imax][jmax] + ", tại vị trí [" + imax + "," + jmax + "]");
 
@@ -77,7 +83,7 @@ public class Main {
         System.out.println();
         System.out.println("Sắp xếp các cột theo thứ tự tăng dần:");
         sortA(arr, n, m);
-        PrintArr(arr, n, m);
+        PrintArr2D(arr, n, m);
 
 
     }
